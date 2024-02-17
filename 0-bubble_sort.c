@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdbool.h>
 
 /**
 *bubble_sort - sorts an array of integers in ascending
@@ -9,28 +10,31 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t i;
-	int swapper = -1; /* for checking if swap has been done */
-	int temp;
+        size_t i, j = 0;
+        int temp;
+        bool swap = false;
 
-	if (size < 2)
-	{
-		return;
-	}
-
-	while (swapper)
-	{
-		swapper = 0;
-		for (i = 0 ; i < size - 1; i++)
-		{
-			if (array[i] > array[i + 1])
-			{
-				temp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = temp;
-				swapper++;
-				print_array(array, size); /*print array*/
-			}
-		}
-	}
+        if (size < 2)
+        {
+            return;
+        }
+        while (j < size)
+        {
+            swap = false;
+            for (i = 0; i < size - 1; i++)
+            {
+                if (array[i] > array[i + 1])
+                {
+                    temp = array[i + 1];
+                    array[i + 1] = array[i];
+                    array[i] = temp;
+                    swap = true;
+                    print_array(array, size);
+                }
+            }
+            if (swap == false)
+                break;
+            j++;
+        }
 }
+
