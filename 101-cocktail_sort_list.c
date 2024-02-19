@@ -7,7 +7,7 @@
  * @swap2: 2nd value
  */
 
-void forward_swap(listint_t *swap1, listint_t *swap2)
+#void forward_swap(listint_t *swap1, listint_t *swap2)
 {
 	listint_t *swap1_prev, *swap2_next;
 
