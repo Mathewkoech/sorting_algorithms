@@ -23,4 +23,19 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
+/*lomuto partion scheme*/
+void lomuto_sort(int *array, size_t size, int low, int high);
+int lomuto_partition(int *array, size_t size, int low, int high);
+/*swaps*/
+void swap(int *a, int *b);
+/* advanced*/
+void cocktail_sort_list(listint_t **list);
+void shell_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void heap_sort(int *array, size_t size);
+void radix_sort(int *array, size_t size);
+void bitonic_sort(int *array, size_t size);
+void quick_sort_hoare(int *array, size_t size);
+
 #endif
