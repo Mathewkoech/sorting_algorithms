@@ -102,7 +102,7 @@ void cocktail_sort_list(listint_t **list)
 				if (temp->n > temp->next->n)
 				{
 					forward_swap(temp->next, temp);
-					print_list(*list);
+					print_list(list);
 					swap = true;
 				}
 				if (!temp->next && first_time == 0)
