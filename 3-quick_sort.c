@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "sort.h"
 #include <stdbool.h>
 
@@ -17,7 +16,7 @@ void swap(int *a, int *b)
 
 /**
  * partition - uses Hoare's partitions on the array/ sub-array
- * @array: array of integers
+ * @arr: array of integers
  * @low: lowest index in array
  * @high: highest index in array
  * @size: of array
@@ -31,25 +30,23 @@ size_t partition(int *arr, size_t low, size_t high, size_t size)
 
 	while (true)
 	{
-		do
-		{
+		do {
 			i++;
 		} while (arr[i] < pivot);
 
-		do 
-		{
+		do {
 			j--;
 		} while (arr[j] > pivot);
 
 		if (i >= j)
-			return j;
+			return (j);
 		swap(&arr[i], &arr[j]);
 		print_array(arr, size);
 	}
 }
 
 /**
- * quick_sort - sorts an array of integers in ascending
+ * my_quick_sort - sorts an array of integers in ascending
  * order using the Quick sort algorithm
  * @array: input array of integers
  * @low: lowest index
@@ -79,7 +76,7 @@ void my_quick_sort(int *array, size_t low, size_t high, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-	 if (array == NULL || size < 2)
+	if (array == NULL || size < 2)
 		return;
 	 my_quick_sort(array, 0, size - 1, size);
 }
