@@ -27,11 +27,12 @@ void swap(int *a, int *b)
  */
 int lomuto_partition(int *array, size_t size, int low, int high)
 {
+	int pivot = array[high];
 	int l = low - 1, m;
 
-	for (m = low; m <= high - 1; m++)
+	for (m = low; m <= high; m++)
 	{
-		if (array[m] < array[high])
+		if (array[m] <= pivot)
 		{
 			l++;
 			if (l != m)
@@ -41,12 +42,7 @@ int lomuto_partition(int *array, size_t size, int low, int high)
 			}
 		}
 	}
-	if (l + 1 != high)
-	{
-		swap(&array[l + 1], &array[high]);
-		print_array(array, size);
-	}
-	return (l + 1);
+	return (l);
 }
 /**
  * lomuto_sort - fucntion that implement the quicksort algorithm
@@ -83,5 +79,5 @@ void quick_sort(int *array, size_t size)
 	{
 		return;
 	}
-	lomuto_sort(array, size, 0, size - 1);
+	lomuto_sort(array, 0, size, size - 1);
 }
