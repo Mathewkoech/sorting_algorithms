@@ -1,10 +1,10 @@
 #include "sort.h"
 
 /**
- * swap - swap two int
+ * swap - swaps two integers
  * @a: int
  * @b: int
- * Return: (void) Swaped int
+ * Return:nothing
  */
 void swap(int *a, int *b)
 {
@@ -20,7 +20,7 @@ void swap(int *a, int *b)
  * @low: int
  * @high: int
  * @size: size of array (size_t)
- * Return: index of pivote (int)
+ * Return: index of pivot
  */
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
@@ -61,7 +61,7 @@ void lomuto_sort(int *array, int low, int high, size_t size)
 	}
 }
 /**
- * quick_sort - Quick Sort Algorithme using lomuto partition
+ * quick_sort - Quick Sort Algorithm using lomuto partition
  * @array: Array to sort
  * @size: Size of The Array
  * Return: Sorted Array (void)
