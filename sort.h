@@ -36,7 +36,7 @@ void cocktail_sort_list(listint_t **list);
 void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **current);
 void swap_node_behind(listint_t **list, listint_t **current);
 void cocktail_sort_list(listint_t **list);
-
+void swapp(int *a, int *b);
 void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
@@ -48,4 +48,7 @@ void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void heapify(int *array, int heap, int i, int size);
 void heap_sort(int *array, size_t size);
+int pivot_partition(int *array, int low, int high, size_t size);
+void hoare_qsort(int *array, int low, int high, size_t size);
+void quick_sort_hoare(int *array, size_t size);
 #endif
