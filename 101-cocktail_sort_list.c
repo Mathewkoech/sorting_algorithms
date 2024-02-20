@@ -1,82 +1,49 @@
 #include "sort.h"
-#include <stdbool.h>
+#include <stdio.h>
 
 /**
- * forward_swap - swaps left to right 
- * @swap1: 1st value
- * @swap2: 2nd value
+ * node_swap - function to swap two nodes
+ * @node1: 1st node
+ * @node2: second node
  */
 
-#void forward_swap(listint_t *swap1, listint_t *swap2)
+void node_swap(listint_t *node1, listint_t *node2)
 {
-	listint_t *swap1_prev, *swap2_next;
+	listint_t *temp_next, *temp_prev;
 
-	swap1_prev = swap1->prev;
-	swap2_next = swap2->next;
+	printf("before swap\n");
+	printf("node1->next->n: %d\n", node1->next->n);
+	printf("node2->prev->n: %d\n", node2->prev->n);
 
-	swap1->next = swap2_next;
-	swap2->prev = swap1_prev;
+	temp_next = node2->next;
+	temp_prev = node1->prev;
 
-	swap1->prev = swap2;
-	swap2->next = swap1;
+	node2->prev = temp_prev;
+	node1->next = temp_next;
 
-	swap1_prev->next = swap2;
-	if (swap2_next)
-		swap2_next->prev = swap1;
-}
+	node2->next = node1;
+	node1->prev = node2;
 
-/**
- * back_swap - swaps right to left
- * @list: linked list of integers
- * @node: node to be checked
- */
+	printf("after swap\n");
+	printf("node1->n: %d\n", node1->n);
+	printf("node2->n: %d\n", node2->n);
+	printf("node2->next->n: %d\n", node2->next->n);
+	printf("node1->prev->n: %d\n", node1->prev->n);
 
-void back_swap(listint_t **list, listint_t *node)
-{
-	listint_t *swap1_prev, *swap2_next, *swap1;
+	if (temp_next == NULL)
+		return;
+	temp_next->prev = node1;
 
-	swap1 = node->prev;
-	swap1_prev = swap1->prev;
-	swap2_next = node->next;
+	if (temp_prev == NULL)
+		return;
+	temp_prev->next = node2;
 
-	node->prev = swap1_prev;
-	swap1->next = swap2_next;
+	printf("after all:\n");
+	printf("node1->n: %d\n", node1->n);
+	printf("node2->n: %d\n", node2->n);
 
-	node->next = swap1;
-	swap1->prev = node;
-
-	swap2_next->prev = swap1;
-	if (swap1_prev)
-		swap1_prev->next = node;
-	else
-		*list = node;
-}
-
-/**
- * back_swapping - calls back swap, if previous node is not NULL
- * @list: linked list of integers
- * @node: node in list
- * Return: bool swap
- */
-
-bool back_swapping(listint_t **list, listint_t *node)
-{
-	bool swap = false;
-
-	while (node->prev)
-	{
-		if (node->n < node->prev->n)
-		{
-			back_swap(list, node);
-
-			swap = true;
-			print_list(*list);
-		}
-		else
-			break;
-	}
-
-	return (swap);
+	printf("temp_next->n: %d\n", temp_next->n);
+	printf("temp_prev->n: %d\n\n", temp_prev->n);
 }
 
 /**
@@ -87,40 +54,64 @@ bool back_swapping(listint_t **list, listint_t *node)
 
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *temp, *start = *list, *end;
-	bool swap = true;
-	int first_time = 0;
+	listint_t *start = *list, *end, *temp;
+	bool swapped = true;
 
-	if (start->next)
+	temp = start;
+	while (temp)
 	{
-		while (swap)
-		{
-			swap = false;
-			temp = start;
-			while (temp)
-			{
-				if (temp->n > temp->next->n)
-				{
-					forward_swap(temp->next, temp);
-					print_list(list);
-					swap = true;
-				}
-				if (!temp->next && first_time == 0)
-					end = temp;
-				first_time++;
-				temp = temp->next;
-			}
-			start = start->next;
-
-			if (!swap)
-				break;
-
-			temp = end->prev;
-			swap = back_swapping(list, temp);
-			end = end->prev;
-		}
+		if (!temp->next)
+			end = temp;
+		temp = temp->next;
 	}
 
-	else
-		return;
+	while (swapped)
+	{
+		swapped = false;
+
+		temp = start;
+		while (temp != end)
+		{
+			if (!temp->next)
+			{
+				printf("done");
+				break;
+			}
+
+			if (temp->n > temp->next->n)
+			{
+				node_swap(temp, temp->next);
+				printf("temp->n: %d\n", temp->n);
+				swapped = true;
+				print_list(*list);
+				printf("1\n");
+				continue;
+			}
+			printf("2\n");
+			temp = temp->next;
+		}
+
+		if (!swapped)
+			break;
+
+		swapped = false;
+
+		end = end->prev;
+
+		temp = end->prev;
+		while (temp != start || temp == start)
+		{
+/*			if (!temp->prev)*/
+/*				break;*/
+			if (temp->n > temp->next->n)
+			{
+				node_swap(temp, temp->next);
+				swapped = true;
+				print_list(*list);
+			}
+			temp = temp->prev;
+		}
+
+		start = start->next;
+	}
 }
