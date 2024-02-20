@@ -1,6 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
+#include <stdlib.h>
 #include <stddef.h>
 #include <stdbool.h>
 
@@ -26,8 +27,9 @@ void quick_sort(int *array, size_t size);
 /*lomuto partion scheme*/
 void lomuto_sort(int *array, size_t size, int low, int high);
 int lomuto_partition(int *array, size_t size, int low, int high);
-/*swaps*/
+/*utils*/
 void swap(int *a, int *b);
+int get_high(int *array, int size);
 /* advanced*/
 void cocktail_sort_list(listint_t **list);
 void shell_sort(int *array, size_t size);
@@ -36,6 +38,7 @@ void merge_sort(int *array, size_t size);
 void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
-/*void quick_sort_hoare(int *array, size_t size);*/
+void quick_sort_hoare(int *array, size_t size);
 void shell_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
 #endif
