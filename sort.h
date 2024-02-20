@@ -32,6 +32,11 @@ void swap(int *a, int *b);
 int get_high(int *array, int size);
 /* advanced*/
 void cocktail_sort_list(listint_t **list);
+/*inside cocktail*/
+void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **current);
+void swap_node_behind(listint_t **list, listint_t **current);
+void cocktail_sort_list(listint_t **list);
+
 void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
